@@ -1,0 +1,77 @@
+{
+  "stationCollection": [
+    {
+      "id": "d9ce8c00-124c-11ed-8e2d-1f8227bbef44",
+      "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "name": "Tramore",
+      "lastReading" : {
+        "id": "04",
+        "code": 700,
+        "temperature": 8,
+        "windSpeed": 1,
+        "pressure": 1005,
+        "windDirection": 101
+      },
+      "readings": [
+        {
+          "id": "02",
+          "code": 800,
+          "temperature": 0.5,
+          "windSpeed": 3.5,
+          "pressure": 1002,
+          "windDirection": 90
+        },
+        {
+          "id": "03",
+          "code": 600,
+          "temperature": 6,
+          "windSpeed": 2,
+          "pressure": 1004,
+          "windDirection": 96
+        },
+        {
+          "id": "04",
+          "code": 700,
+          "temperature": 8,
+          "windSpeed": 1,
+          "pressure": 1005,
+          "windDirection": 101
+        }
+      ]
+    },
+    [
+      {
+        "id": "d9348c00-124c-55ed-8e2d-1f8227bbef88",
+        "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
+        "name": "Dunmore",
+        "readings": [],
+        "lastReading" : {
+
+        }
+      }
+    ],
+    {
+      "id": "44a2d9b0-126a-11ed-8a2d-53f06acc3d29",
+      "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
+      "name": "Test Station",
+      "lastReading" : {
+        "id": "5515aa70-126a-11ed-8a2d-53f06acc3d29",
+        "code": 233,
+        "temperature": 13,
+        "pressure": 12,
+        "windSpeed": 12,
+        "windDirection": 12
+      },
+      "readings": [
+        {
+          "id": "5515aa70-126a-11ed-8a2d-53f06acc3d29",
+          "code": 233,
+          "temperature": 13,
+          "pressure": 12,
+          "windSpeed": 12,
+          "windDirection": 12
+        }
+      ]
+    }
+  ]
+}

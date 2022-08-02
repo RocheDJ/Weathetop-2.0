@@ -1,0 +1,208 @@
+<div class="ui grid">
+  <div class="stretched five column row">
+    <! –– Tile 1 -->
+    <div class="column">
+      <div class="ui inverted segment">
+        <div class="ui grid">
+          <div class="stretched two column row">
+            <div class="column">
+              <div class="ui inverted segment"> {{name}} {{@index}} </div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment" data-tooltip="Click icon to map GPS location in new window.">
+                <a href="https://www.google.ie/maps/place/${_station.latitude},${_station.longitude}" target="_blank">
+                  <i class="big map marker icon blue"> </i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui grid">
+          <div class="stretched one column row">
+            <div class="column">
+              <div class="ui inverted segment">
+                                <span class="ui inverted blue text">
+                                    Lat: -90 <br>
+                                    Lon: -90
+                                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <! –– Tile 2 -->
+    <div class="column">
+      <div class="ui inverted segment">
+        <div class="ui grid">
+          <div class="stretched two column row">
+            <div class="column">
+              <div class="ui inverted segment"> Weather</div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment"><i class="big cloud sun icon"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="ui grid">
+          <div class="stretched one column row">
+            <div class="column">
+              <div class="ui inverted segment">
+                <span class="ui inverted blue text">Sunny </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <! –– Tile 3 -->
+    <div class="column">
+      <div class="ui inverted segment">
+        <div class="ui grid">
+          <div class="stretched two column row">
+            <div class="column">
+              <div class="ui inverted segment"> Temp</div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment">
+                <i class="big temperature low icon white"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui grid">
+          <div class="stretched two column row">
+            <div class="column">
+              <div class="ui inverted segment"><span class="ui inverted blue text">{{lastReading.temperature}}</span>
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui grid">
+          <div class="stretched one column row">
+            <div class="column">
+              <div class="ui inverted segment">
+                <span class="ui inverted blue text"> Min : 0</span><br>
+                <span class="ui inverted blue text"> Max :0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <! –– Tile 4 -->
+    <div class="column">
+      <div class="ui inverted segment">
+        <div class="ui grid">
+          <div class="stretched two column row">
+            <div class="column">
+              <div class="ui inverted segment"> Wind</div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment"><i class="big wind icon green"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="ui grid">
+          <div class="stretched two column row">
+            <div class="column">
+              <div class="ui inverted segment">
+                                <span class="ui inverted blue text">
+                                  {{lastReading.windSpeed}}
+                                </span>
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment">
+
+                <i class="big arrow up icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui grid">
+          <div class="stretched one column row">
+            <div class="column">
+              <div class="ui inverted segment">
+                                <span class="ui inverted blue text">
+                                  <br>
+                                  <br>
+                                 Min : 0<br>Max : 0<br>
+                                </span>
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment">
+                                <span class="ui inverted blue text">
+                                   0
+                                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <! –– Tile 5 -->
+    <div class="column">
+      <div class="ui inverted segment">
+        <div class="ui grid">
+          <div class="stretched two column row">
+            <div class="column">
+              <div class="ui inverted segment"> Pressure</div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment"><i class="big dice d20 icon orange"></i></div>
+            </div>
+          </div>
+        </div>
+        <div class="ui grid">
+          <div class="stretched two column row">
+            <div class="column">
+              <div class="ui inverted segment">
+                                 <span class="ui inverted blue text">
+                                   {{lastReading.pressure}}
+                                 </span>
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment">
+
+                <i class="big arrow up icon"></i>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="ui grid">
+          <div class="stretched one column row">
+            <div class="column">
+              <div class="ui inverted segment">
+                <span class="ui inverted blue text">000</span>
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui inverted segment">
+                                <span class="ui inverted blue text">
+                                    Min : 0<br>
+                                     Max : 0
+                                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <! –– ----- -->
+  </div>
+
+</div>

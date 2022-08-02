@@ -1,0 +1,11 @@
+{{#each stations}}
+    <section class="ui segment">
+        <h2 class="ui header">
+            {{name}}
+        </h2>
+       {{> current}}
+        <p>Click for Details</p>
+        <a href="/station/{{id}}"class="ui icon button" > <i class="folder open icon"></i> </a>
+        <a href="/deleteStation/{{id}}" class="ui icon button"> <i class="trash icon"></i> </a>
+    </section>
+{{/each}}
