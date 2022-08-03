@@ -4,14 +4,27 @@
       "id": "d9ce8c00-124c-11ed-8e2d-1f8227bbef44",
       "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
       "name": "Tramore",
-      "lastReading" : {
-        "id": "04",
-        "code": 700,
-        "temperature": 8,
-        "windSpeed": 1,
-        "pressure": 1005,
-        "windDirection": 101
-      },
+      "latitude": 52.16235,
+      "longitude": -7.15244,
+      "current_windSpeed": 8,
+      "current_BeauFort": "Violent Storm",
+      "current_windSpeed_max": 18,
+      "current_windSpeed_min": 0,
+      "current_windDirection": "---",
+      "current_summery": "Sunny",
+      "current_temp_c": 15,
+      "current_temp_max": 25,
+      "current_temp_min": 10,
+      "current_temp_f": 15,
+      "current_pressure": 1005,
+      "current_pressure_max": 1000,
+      "current_pressure_min": 1010,
+      "trend_pressure_up" : false,
+      "trend_pressure_down" : true,
+      "trend_wind_up" : false,
+      "trend_wind_down" : true,
+      "trend_temp_up" : false,
+      "trend_temp_down" : true,
       "readings": [
         {
           "id": "02",
@@ -19,7 +32,8 @@
           "temperature": 0.5,
           "windSpeed": 3.5,
           "pressure": 1002,
-          "windDirection": 90
+          "windDirection": 90,
+          "date": "2021-01-20 10:31:00"
         },
         {
           "id": "03",
@@ -27,7 +41,8 @@
           "temperature": 6,
           "windSpeed": 2,
           "pressure": 1004,
-          "windDirection": 96
+          "windDirection": 96,
+          "date": "2021-01-20 10:41:00"
         },
         {
           "id": "04",
@@ -35,7 +50,8 @@
           "temperature": 8,
           "windSpeed": 1,
           "pressure": 1005,
-          "windDirection": 101
+          "windDirection": 101,
+          "date": "2021-01-20 10:51:00"
         }
       ]
     },
@@ -45,33 +61,42 @@
         "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
         "name": "Dunmore",
         "readings": [],
-        "lastReading" : {
-
-        }
+        "lastReading": {}
       }
     ],
     {
-      "id": "44a2d9b0-126a-11ed-8a2d-53f06acc3d29",
+      "id": "8c739ef0-1337-11ed-a84c-3f9b36bff80c",
       "userid": "3ad52697-6d98-4d80-8273-084de55a86c0",
-      "name": "Test Station",
-      "lastReading" : {
-        "id": "5515aa70-126a-11ed-8a2d-53f06acc3d29",
-        "code": 233,
-        "temperature": 13,
-        "pressure": 12,
-        "windSpeed": 12,
-        "windDirection": 12
-      },
+      "name": "Adamstown",
       "readings": [
         {
-          "id": "5515aa70-126a-11ed-8a2d-53f06acc3d29",
+          "id": "ab3c2cd0-1337-11ed-a84c-3f9b36bff80c",
           "code": 233,
           "temperature": 13,
-          "pressure": 12,
+          "pressure": 1005,
           "windSpeed": 12,
-          "windDirection": 12
+          "windDirection": 235
         }
-      ]
+      ],
+      "current_windDirection": "SW",
+      "current_temp_c": 13,
+      "current_temp_f": 55.4,
+      "current_temp_max": 25,
+      "current_temp_min": 10,
+      "latitude": 52.3926047038,
+      "longitude": -6.716158756,
+      "current_windSpeed": 12,
+      "current_windSpeed_max": 14,
+      "current_windSpeed_min": 1,
+      "current_pressure_max": 1000,
+      "current_pressure_min": 1010,
+      "current_pressure": 1003,
+      "trend_pressure_up" : true,
+      "trend_pressure_down" : false,
+      "trend_wind_up" : false,
+      "trend_wind_down" : true,
+      "trend_temp_up" : false,
+      "trend_temp_down" : true
     }
   ]
 }

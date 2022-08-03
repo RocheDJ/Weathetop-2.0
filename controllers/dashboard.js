@@ -3,16 +3,23 @@ const uuid = require('uuid');
 const logger = require("../utils/logger");
 const stationStore = require('../models/station-store');
 const accounts = require ('./accounts.js');
+const stationUtils = require('../utils/stationUtils');
+
 
 const dashboard = {
   index(request, response) {
     logger.info('dashboard rendering');
     const loggedInUser = accounts.getCurrentUser(request);
+    const myStations = stationStore.getUserStationsSorted(loggedInUser.id);
+    const currentData = stationStore.getStationsCurrentData(loggedInUser.id);
+
     const viewData = {
       title: 'Weather Station Dashboard',
-      stations: stationStore.getUserStations(loggedInUser.id),
+      stations: myStations,
       firstName: loggedInUser.firstName,
-      lastName: loggedInUser.lastName
+      lastName: loggedInUser.lastName,
+      currentData : currentData,
+      windDirection: stationUtils.sCompasHeading(156),
     };
     logger.info('About to render Dashboard',  stationStore.getUserStations(loggedInUser.id));
     response.render('dashboard', viewData);
