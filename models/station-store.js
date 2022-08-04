@@ -43,6 +43,7 @@ const stationStore = {
     station.current_temp_f = stationUtils.cTof(recentReading.temperature);
     station.current_BeauFort = stationUtils.sBeauFortFromKph(recentReading.windSpeed);
     station.current_WindChill = stationUtils.sWindChill(recentReading.windSpeed,recentReading.temperature);
+    station.current_summery = stationUtils.sConditionsFromCode(recentReading.code);
     //trend the temp
     let tTrend = stationUtils.trendValue(3,station.readings,"temperature");
     if(tTrend ==1){

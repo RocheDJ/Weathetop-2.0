@@ -14,6 +14,8 @@ router.get('/station/:id', station.index);
 router.get('/station/:id/deletereading/:readingid', station.deleteReading);
 router.get('/deleteStation/:id/', dashboard.deleteStation)
 router.post('/station/:id/addreading', station.addReading);
+router.post('/station/:id/addautoreading', station.addAutoReading);
+
 router.post('/dashboard/addstation', dashboard.addStation);
 
 router.get('/', accounts.index);

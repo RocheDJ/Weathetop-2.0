@@ -246,7 +246,45 @@ const stationUtils = {
       logger.error("sWindChill Error --" + eX.message);
     }
     return sReturn;
+  },
+
+  sConditionsFromCode(iCode){
+    let sReturn = "";
+    try {
+      switch (iCode) {
+        case 100:
+          sReturn = "Clear";
+          break;
+        case 200:
+          sReturn = "Partial clouds";
+          break;
+        case 300:
+          sReturn = "Cloudy";
+          break;
+        case 400:
+          sReturn = "Light showers";
+          break;
+        case 500:
+          sReturn = "Heavy showers";
+          break;
+        case 600:
+          sReturn = "Rain";
+          break;
+        case 700:
+          sReturn = "Snow";
+          break;
+        case 800:
+          sReturn = "Thunder";
+          break;
+        default:
+          sReturn = "Unknown code";
+      }
+    } catch (eX) {
+      logger.error("sConditionsFromCode Error " + eX.getMessage());
+    }
+    return sReturn;
   }
+
 
 };
 module.exports = stationUtils;
