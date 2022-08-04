@@ -34,20 +34,36 @@ const stationStore = {
     this.store.save();
   },
 
-  addReading(id, reading) {
+  updateCurrentValues(id){
     const station = this.getStation(id);
-    station.readings.push(reading);
-    //Todo: make sure current reading is actually greater than the last
-    station.current_windDirection = stationUtils.sCompasHeading(reading.windDirection);
-    station.current_temp_c = reading.temperature;
-    station.current_temp_f = stationUtils.cTof(reading.temperature);
-    station.current_BeauFort = stationUtils.sBeauFortFromKph(reading.windSpeed);
-    let tTrend = stationUtils.trendTemperature(3);
-    if(tTrend ===1){
+    const readingsDesc = sortArrayOfObjects(station.readings,"","desc"); // sort in descending latest date is in index 0
+    const recentReading =readingsDesc[0];
+    station.current_windDirection = stationUtils.sCompasHeading(recentReading.windDirection);
+    station.current_temp_c = recentReading.temperature;
+    station.current_temp_f = stationUtils.cTof(recentReading.temperature);
+    station.current_BeauFort = stationUtils.sBeauFortFromKph(recentReading.windSpeed);
+    station.current_WindChill = stationUtils.sWindChill(recentReading.windSpeed,recentReading.temperature);
+    //trend the temp
+    let tTrend = stationUtils.trendValue(3,station.readings,"temperature");
+    if(tTrend ==1){
+      station.trend_temp_up = true;
+      station.trend_temp_down = false;
+    }else{
+      if(tTrend ==-1){
+        station.trend_temp_up = false;
+        station.trend_temp_down = true;
+      } else{
+        station.trend_temp_up = false;
+        station.trend_temp_down = false;
+      }
+    }
+  //trend the pressure
+    tTrend = stationUtils.trendValue(3,station.readings,"pressure");
+    if(tTrend ==1){
       station.trend_pressure_up = true;
       station.trend_pressure_down = false;
     }else{
-      if(tTrend ===-1){
+      if(tTrend ==-1){
         station.trend_pressure_up = false;
         station.trend_pressure_down = true;
       } else{
@@ -55,7 +71,26 @@ const stationStore = {
         station.trend_pressure_down = false;
       }
     }
+    //trend the wind speed
+    tTrend = stationUtils.trendValue(3,station.readings,"windSpeed");
+    if(tTrend ==1){
+      station.trend_wind_up = true;
+      station.trend_wind_down = false;
+    }else{
+      if(tTrend ==-1){
+        station.trend_wind_up = false;
+        station.trend_wind_down = true;
+      } else{
+        station.trend_wind_up = false;
+        station.trend_wind_down = false;
+      }
+    }
+  },
 
+  addReading(id, reading) {
+    const station = this.getStation(id);
+    station.readings.push(reading);
+    this.updateCurrentValues(id);
     this.store.save();
   },
 
@@ -63,6 +98,7 @@ const stationStore = {
     const station = this.getStation(id);
     const readings = station.readings;
     _.remove(readings, { id: readingId });
+    this.updateCurrentValues(id);
     this.store.save();
   },
 

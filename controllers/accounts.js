@@ -21,7 +21,7 @@ const accounts = {
     },
 
     logout(request, response) {
-        response.cookie('playlist', '');
+        response.cookie('station', '');
         response.redirect('/');
     },
 
@@ -45,7 +45,7 @@ const accounts = {
         const enteredpassword = request.body.password;
         if (user) {
             if (user.password ===  enteredpassword){
-                response.cookie('playlist', user.email);
+                response.cookie('station', user.email);
                 logger.info(`logging in ${user.email}`);
                 response.redirect('/dashboard');
             }else {
@@ -57,9 +57,37 @@ const accounts = {
     },
 
     getCurrentUser(request) {
-        const userEmail = request.cookies.playlist;
+        const userEmail = request.cookies.station;
         return userstore.getUserByEmail(userEmail);
     },
+
+    updateUser(request,response){
+        const userEmail = request.cookies.station;
+        const user = userstore.getUserByEmail(request.body.email);
+        const userid = user.id;
+
+        const firstName = request.body.firstName
+        const lastName = request.body.lastName
+        const email = request.body.email
+        const password = user.password;
+        const oldpassword = request.body.oldpassword
+        const newpassword = request.body.newpassword
+        const confirmpassword = request.body.confirmpassword
+
+        if (oldpassword==password){
+            if(newpassword==confirmpassword) {
+                logger.info(`updating info for  ${user.email}`);
+                userstore.updateUserById(userid,firstName,lastName,email,newpassword);
+                response.redirect('/dashboard');
+            }else{
+                response.redirect('/edituser');
+            }
+        } else{
+            response.redirect('/edituser');
+        }
+
+    }
+
 };
 
 module.exports = accounts;

@@ -17,6 +17,15 @@ const userStore = {
         this.store.save();
     },
 
+    updateUserById(id,sfirstname,slastname,semail,spassword){
+       let user =  this.getUserById(id);
+       user.firstName=sfirstname;
+        user.lastName=slastname;
+        user.email=semail;
+        user.password=spassword;
+        this.store.save();
+    },
+
     getUserById(id) {
         return this.store.findOneBy(this.collection, { id: id });
     },

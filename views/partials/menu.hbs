@@ -1,12 +1,19 @@
 <nav class="ui menu">
-    <header class="ui header item"> <a href="/"> Weather Top V2 </a></header>
-    <div class="right menu">
-        <a id="dashboard" class="item" href="/dashboard"> Dashboard  </a>
-        <a id="about" class="item" href="/about"> About </a>
-        <a id="logout" class="item" href="/logout"> Logout </a>
+  <header class="ui header item"><a href="/"> Weather Top V2 </a></header>
+  <div class="right menu">
+    <a id="dashboard" class="item" href="/dashboard"> Dashboard </a>
+    <a id="about" class="item" href="/about"> About </a>
+    <div class="ui simple dropdown item">
+      User
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="item"><a class="item" href="/edituser"> Edit My Info </a></div>
+        <div class="item"><a class="item" href="/logout"> Logout </a></div>
+      </div>
     </div>
+  </div>
 </nav>
 
 <script>
-    $("#{{id}}").addClass("active item");
+  $("#{{id}}").addClass("active item");
 </script>

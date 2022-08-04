@@ -1,7 +1,25 @@
 <form class="ui stacked segment form" action="/dashboard/addstation" method="POST">
-    <div class="field">
+  <div class="ui three column grid">
+    <div class="column">
+      <div class="field">
         <label>Station Name</label>
-        <input placeholder="Name" type="text" name="name">
+        <input placeholder="Name" type="text" name="name" required>
+      </div>
     </div>
-    <button class="ui blue submit button">Add Station</button>
+    <div class="column">
+      <div class="field">
+        <label>Latitude</label>
+        <input placeholder="Name" type="number" step="0.000001" name="latitude" required>
+        <!-- https://html.spec.whatwg.org/multipage/input.html#the-step-attribute -->
+      </div>
+    </div>
+    <div class="column">
+      <div class="field">
+        <label>Longitude</label>
+        <input placeholder="Name" type="number" step="0.000001" name="longitude" required>
+        <!-- https://html.spec.whatwg.org/multipage/input.html#the-step-attribute -->
+      </div>
+    </div>
+  </div>
+  <button class="ui blue submit button">Add Station</button>
 </form>

@@ -1,13 +1,14 @@
 "use strict";
 const _ = require("lodash");
 const logger = require("../utils/logger");
+const sortArrayOfObjects = require("./sort");
+
 const Windsector = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
 
 const stationUtils = {
-/* C to F conversion
- */
-  cTof(celsius)
-  {
+  /* C to F conversion
+   */
+  cTof(celsius) {
     var cTemp = celsius;
     var cToFahr = cTemp * 9 / 5 + 32;
     return cToFahr;
@@ -16,36 +17,39 @@ const stationUtils = {
   /*
   * Return average Value of a list of doubles
   */
-  average(List, lstDouble) {
+  average(nList) {
     let dReturn = 0.0;
     let dTotal = 0;
     dTotal = 0;
-    for (let iX = 0; iX < lstDouble.size(); iX++) {
-      dTotal = dTotal + lstDouble.get(iX);
+    for (let iX = 0; iX < nList.length; iX++) {
+      if (nList[iX]){
+        dTotal = dTotal + nList[iX];
+      }
+
     }
-    dReturn = dTotal / lstDouble.size();
+    dReturn = dTotal / nList.length;
     return dReturn;
-  }, /*
+  },
+  /*
      * Return the slope or trend for an array code based on formula outlined in
      * https://study.com/academy/lesson/what-is-a-trend-line-in-math-definition-equation-analysis.html
      */
 
-  dTrend(yList, xList) {
+  dTrend(xList, yList) {
     let dReturnValue = 0;
-
     //get the average of the x coordinates (time stamp)
-    let yAvg = average(yList);
+    let xAvg = this.average(xList);
     //get the average of the y coordinates (the value we are trending)
-    let xAvg = average(xList);
+    let yAvg = this.average(yList);
 
     let sumNumerator = 0;
     let sumDenominator = 0;
     //for each point get
-    for (let i = 0; i < yList.size(); i++) {
+    for (let i = 0; i < yList.length; i++) {
       //the differences between each y-coordinate and the average of all of the y-coordinates
-      let y = yList.get(i);
+      let y = yList[i];
       // the differences between each x-coordinate and the average of all of the x-coordinates
-      let x = xList.get(i);
+      let x = xList[i];
       let yDiff = y - yAvg;
       let xDiff = x - xAvg;
       // multiply columns 1 and 2
@@ -92,8 +96,9 @@ const stationUtils = {
   /*
   Return the Beaufort String or force value from the wind speed
     */
-  sBeauFortFromKph(dWindSpeed){
+  sBeauFortFromKph(dWindSpeed) {
     let sReturn = "---";
+    const xAsLabel =true;
     try {
       //start from max and work down returning after each check
       if (dWindSpeed >= 103) {
@@ -191,36 +196,57 @@ const stationUtils = {
    */
 
   //set max number of readings to trend
-  trendTemperature(iNoOfReadings) {
-  let iReturnValue = 0;
-  let xValues =[]; //date time stamp
-  let yValues=[]; //Value
-  aReadings;// array of readings
-  //xValues = new ArrayList<>();
-  //yValues = new ArrayList<>();
+  trendValue(iNoOfReadings, aReadings,key) {
+    let iReturnValue = 0;
+    let xValues = []; //date time stamp
+    let yValues = []; //Value
+    //ToDo: Start here tomorrow-
+    // sort by date in descending order for trending last x readings
+    aReadings = sortArrayOfObjects(aReadings, "epocDate","desc");
+    //Check so we trend only what we have if we have less than the requested number of readings
+    if (aReadings.length < iNoOfReadings) {
+      iNoOfReadings = aReadings.length;
+    }
 
-  // sort by date in descending order for trending last x readings
-  Collections.sort(this.readings, new Reading.CompareLogDate(true));
-  //Check so we trend only what we have if we have less than the requested number of readings
-  if (this.readings.size() < iNoOfReadings) {
-    iNoOfReadings = this.readings.size();
-  }
-  for (let iX = 0; iX < iNoOfReadings; iX++) {
-    let mReading = this.readings.get(iX);
-    yValues.add(mReading.temperature);
-    xValues.add(Double.valueOf(mReading.getId()));
-  }
-  let dTrendValue = StationUtilities.dTrend(xValues, yValues);
-  if (dTrendValue > 0) {
-    iReturnValue = 1;
-  } else if (dTrendValue < 0) {
-    iReturnValue = -1;
-  } else {
-    iReturnValue = 0;
-  }
+    for (let iX = 0; iX < iNoOfReadings; iX++) {
+      let mReading = aReadings[iX];
+      switch(key){
+        case "temperature":
+          yValues.push(mReading.temperature);
+          break;
+        case "pressure":
+          yValues.push(mReading.pressure);
+          break;
+        case "windSpeed":
+          yValues.push(mReading.windSpeed);
+          break;
+      }
+      xValues.push(mReading.epocDate);
+    }
+    let dTrendValue = this.dTrend(xValues, yValues);
+    if (dTrendValue > 0) {
+      iReturnValue = 1;
+    } else if (dTrendValue < 0) {
+      iReturnValue = -1;
+    } else {
+      iReturnValue = 0;
+    }
 
-  return iReturnValue;
-}
+    return iReturnValue;
+  },
+  /*
+   Return current wind chill as string Based Appendix A - v of specifications
+   */
+  sWindChill(dWindKph, dTemperature) {
+    let sReturn = "---";
+    try {
+      let dWindChill = 13.12 + (0.6215 * dTemperature) - 11.37 * (Math.pow(dWindKph, 0.16)) + 0.3965 * dTemperature * Math.pow(dWindKph, 0.16);//funny cals but ok
+      let sReturn = String.format("Feels like %.2f", dWindChill); // Limit number to 2 decimal places fro display
+    } catch (eX) {
+      logger.error("sWindChill Error --" + eX.message);
+    }
+    return sReturn;
+  }
 
 };
 module.exports = stationUtils;

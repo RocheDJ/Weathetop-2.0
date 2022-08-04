@@ -10,7 +10,7 @@
       "current_BeauFort": "Violent Storm",
       "current_windSpeed_max": 18,
       "current_windSpeed_min": 0,
-      "current_windDirection": "---",
+      "current_windDirection": "-+-",
       "current_summery": "Sunny",
       "current_temp_c": 15,
       "current_temp_max": 25,
@@ -19,12 +19,14 @@
       "current_pressure": 1005,
       "current_pressure_max": 1000,
       "current_pressure_min": 1010,
-      "trend_pressure_up" : false,
-      "trend_pressure_down" : true,
-      "trend_wind_up" : false,
-      "trend_wind_down" : true,
-      "trend_temp_up" : false,
-      "trend_temp_down" : true,
+      "trend_pressure_up": false,
+      "trend_pressure_down": true,
+      "trend_wind_up": false,
+      "trend_wind_down": true,
+      "trend_temp_up": false,
+      "trend_temp_down": true,
+      "current_WindChill": "---",
+      "current_readingDate": "2021-01-20 10:41:00",
       "readings": [
         {
           "id": "02",
@@ -33,7 +35,7 @@
           "windSpeed": 3.5,
           "pressure": 1002,
           "windDirection": 90,
-          "date": "2021-01-20 10:31:00"
+          "readingDate": "2021-01-20 10:31:00"
         },
         {
           "id": "03",
@@ -42,7 +44,7 @@
           "windSpeed": 2,
           "pressure": 1004,
           "windDirection": 96,
-          "date": "2021-01-20 10:41:00"
+          "readingDate": "2021-01-20 10:41:00"
         },
         {
           "id": "04",
@@ -51,7 +53,7 @@
           "windSpeed": 1,
           "pressure": 1005,
           "windDirection": 101,
-          "date": "2021-01-20 10:51:00"
+          "readingDate": "2021-01-20 10:51:00"
         }
       ]
     },
@@ -70,12 +72,84 @@
       "name": "Adamstown",
       "readings": [
         {
-          "id": "ab3c2cd0-1337-11ed-a84c-3f9b36bff80c",
-          "code": 233,
+          "id": "da8344d0-13f3-11ed-9ac8-511a6d416da0",
+          "code": 100,
           "temperature": 13,
           "pressure": 1005,
           "windSpeed": 12,
-          "windDirection": 235
+          "windDirection": 235,
+          "readingDate": "2022-07-04 13:49:18",
+          "epocDate": 1659617358237
+        },
+        {
+          "id": "88917c50-13f3-11ed-9ac8-511a6d416da0",
+          "code": 200,
+          "temperature": 0,
+          "pressure": 1005,
+          "windSpeed": 12,
+          "windDirection": 12,
+          "readingDate": "2022-07-04 13:47:00",
+          "epocDate": 1659617220756
+        },
+        {
+          "id": "65b34de0-13ed-11ed-8f26-736f3ed7c687",
+          "code": 100,
+          "temperature": 0.9,
+          "pressure": 1005,
+          "windSpeed": 12,
+          "windDirection": 12,
+          "readingDate": "2022-07-04 13:03:05",
+          "epocDate": 1659614585278
+        },
+        {
+          "id": "22c053c0-13ed-11ed-8f26-736f3ed7c687",
+          "code": 100,
+          "temperature": 0,
+          "pressure": 1005,
+          "windSpeed": 12,
+          "windDirection": 12,
+          "readingDate": "2022-07-04 13:01:12",
+          "epocDate": 1659614472956
+        },
+        {
+          "id": "b5bff820-13ec-11ed-8f26-736f3ed7c687",
+          "code": 100,
+          "temperature": 0.1,
+          "pressure": 1005,
+          "windSpeed": 12,
+          "windDirection": 12,
+          "readingDate": "2022-07-04 12:58:10",
+          "epocDate": 1659614290080
+        },
+        {
+          "id": "dc6bd490-13eb-11ed-9428-8922e53772c0",
+          "code": 100,
+          "temperature": 1,
+          "pressure": 1005,
+          "windSpeed": 12,
+          "windDirection": 12,
+          "readingDate": "2022-07-04 12:52:05",
+          "epocDate": 1659613925463
+        },
+        {
+          "id": "11b4b050-13eb-11ed-9a6a-37dca1afb335",
+          "code": 100,
+          "temperature": 13,
+          "pressure": 1005,
+          "windSpeed": 10,
+          "windDirection": 12,
+          "readingDate": "2022-07-04 12:46:25",
+          "epocDate": 1659613585364
+        },
+        {
+          "id": "8b729250-13ea-11ed-9a6a-37dca1afb335",
+          "code": 100,
+          "temperature": 13,
+          "pressure": 1005,
+          "windSpeed": 12,
+          "windDirection": 12,
+          "readingDate": "2022-07-04 12:42:40",
+          "epocDate": 1659613360115
         }
       ],
       "current_windDirection": "SW",
@@ -91,12 +165,16 @@
       "current_pressure_max": 1000,
       "current_pressure_min": 1010,
       "current_pressure": 1003,
-      "trend_pressure_up" : true,
-      "trend_pressure_down" : false,
-      "trend_wind_up" : false,
-      "trend_wind_down" : true,
-      "trend_temp_up" : false,
-      "trend_temp_down" : true
+      "current_WindChill": "---",
+      "current_BeauFort": "Gentle Breeze",
+      "trend_pressure_up": true,
+      "trend_pressure_down": false,
+      "trend_wind_up": false,
+      "trend_wind_down": true,
+      "trend_temp_up": true,
+      "trend_temp_down": false,
+      "current_summery": "not set",
+      "current_readingDate": "2021-01-20 10:41:00"
     }
   ]
 }
