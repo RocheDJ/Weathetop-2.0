@@ -5,17 +5,23 @@ const stationStore = require("../models/station-store");
 const uuid = require("uuid");
 const LocalDateTime = require("lodash");
 const axios = require("axios");
+const sortArrayOfObjects = require("../utils/sort");
 
 function padWithZero(num, targetLength) {
   return String(num).padStart(targetLength, "0");
 }
 
-const station = {index(request, response) {
+const station = {
+  index(request, response) {
     const stationId = request.params.id;
+    const myStation = stationStore.getStation(stationId)
     logger.debug("Station id = ", stationId);
+
+    //sort the data for each station in order for trend graph
+    myStation.readings = sortArrayOfObjects(myStation.readings,"epocDate","asec");
     const viewData = {
       name: "Station",
-      station: stationStore.getStation(stationId)
+      station: myStation
     };
 
     response.render("station", viewData);
