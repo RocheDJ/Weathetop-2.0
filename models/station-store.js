@@ -39,11 +39,19 @@ const stationStore = {
     const readingsDesc = sortArrayOfObjects(station.readings,"","desc"); // sort in descending latest date is in index 0
     const recentReading =readingsDesc[0];
     station.current_windDirection = stationUtils.sCompasHeading(recentReading.windDirection);
-    station.current_temp_c = recentReading.temperature;
-    station.current_temp_f = stationUtils.cTof(recentReading.temperature);
+    station.current_temp_c = recentReading.temperature.toFixed(1);
+    station.current_temp_f = stationUtils.cTof(recentReading.temperature).toFixed(1);
+    station.current_windSpeed =recentReading.windSpeed;
+    station.current_pressure =recentReading.pressure;
     station.current_BeauFort = stationUtils.sBeauFortFromKph(recentReading.windSpeed);
     station.current_WindChill = stationUtils.sWindChill(recentReading.windSpeed,recentReading.temperature);
     station.current_summery = stationUtils.sConditionsFromCode(recentReading.code);
+    station.current_temp_max = stationUtils.getMaxValue(station.readings,"temperature");
+    station.current_temp_min =  stationUtils.getMinValue(station.readings,"temperature");
+    station.current_wind_max = stationUtils.getMaxValue(station.readings,"windSpeed");
+    station.current_wind_min = stationUtils.getMinValue(station.readings,"windSpeed");
+    station.current_pressure_max = stationUtils.getMaxValue(station.readings,"pressure");
+    station.current_pressure_min = stationUtils.getMinValue(station.readings,"pressure");
     //trend the temp
     let tTrend = stationUtils.trendValue(3,station.readings,"temperature");
     if(tTrend ==1){

@@ -1,0 +1,52 @@
+<div class="ui five doubling inverted cards">
+  <! –– Tile 1 -->
+  {{> station-panel-tile
+       title   =name
+       icon   = "left floated big map marker icon blue"
+       captionA ="Lat :" valueA = latitude
+       captionB ="Lon :" valueB = longitude
+       showLinkBtn = "True"
+
+  }}
+  <! –– Tile 2 -->
+  {{> station-panel-tile
+    title   ="Weather"
+    icon   = "big cloud sun icon red"
+    valueA = current_summery
+  }}
+  <! –– Tile 3 -->
+  {{> station-panel-tile
+    title   ="Temp"
+    icon   = "big temperature low icon yellow"
+    captionA ="Deg C :" valueA = current_temp_c
+    captionB ="Deg F :" valueB = current_temp_f
+    captionC ="Min :"   valueC = current_temp_min
+    captionD ="Max :"   valueD = current_temp_max
+    captionE ="Feels Like :" valueE = current_WindChill
+    trend-up = trend_temp_up
+    trend-dn = trend_temp_down
+  }}
+  <! –– Tile 4 -->
+  {{> station-panel-tile
+    title   ="Wind"
+    icon   = "big wind icon green"
+    captionA ="Speed KPH :" valueA = current_windSpeed
+    captionB ="Direction:" valueB = current_windDirection
+    captionC =""   valueC = current_BeauFort
+    trend-up = trend_wind_up
+    trend-dn = trend_wind_down
+  }}
+  <! –– Tile 5 -->
+  {{> station-panel-tile
+    title   ="Pressure"
+    icon   = "big dice d20 icon orange"
+    captionA ="Pressure :" valueA = current_pressure
+    captionB ="Direction:" valueB = current_windDirection
+    captionC ="Min :"   valueC = current_pressure_min
+    captionD ="Max :"   valueD = current_pressure_max
+    trend-up = trend_pressure_up
+    trend-dn = trend_pressure_down
+  }}
+
+  <! –– ----- -->
+</div>

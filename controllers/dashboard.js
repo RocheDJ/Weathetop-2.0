@@ -5,6 +5,8 @@ const stationStore = require('../models/station-store');
 const accounts = require ('./accounts.js');
 const stationUtils = require('../utils/stationUtils');
 const sortArrayOfObjects = require("../utils/sort");
+const _ = require("lodash");
+//ToDo: in dashboard make tiles smaller and vary icons
 
 
 const dashboard = {
@@ -12,7 +14,6 @@ const dashboard = {
     logger.info('dashboard rendering');
     const loggedInUser = accounts.getCurrentUser(request);
     const myStations = stationStore.getUserStationsSorted(loggedInUser.id);
-
     const viewData = {
       title: 'Weather Station Dashboard',
       stations: myStations,
@@ -33,7 +34,7 @@ const dashboard = {
     const newStation = {
       id: uuid.v1(),
       userid: loggedInUser.id,
-      name: request.body.name,
+      name: _.upperFirst(request.body.name),
       latitude :request.body.latitude,
       longitude :request.body.longitude,
       readings: [],

@@ -5,6 +5,7 @@ const sortArrayOfObjects = require("./sort");
 
 const Windsector = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW", "N"];
 
+
 const stationUtils = {
   /* C to F conversion
    */
@@ -200,8 +201,6 @@ const stationUtils = {
     let iReturnValue = 0;
     let xValues = []; //date time stamp
     let yValues = []; //Value
-    //ToDo: Start here tomorrow-
-    // sort by date in descending order for trending last x readings
     aReadings = sortArrayOfObjects(aReadings, "epocDate","desc");
     //Check so we trend only what we have if we have less than the requested number of readings
     if (aReadings.length < iNoOfReadings) {
@@ -241,7 +240,9 @@ const stationUtils = {
     let sReturn = "---";
     try {
       let dWindChill = 13.12 + (0.6215 * dTemperature) - 11.37 * (Math.pow(dWindKph, 0.16)) + 0.3965 * dTemperature * Math.pow(dWindKph, 0.16);//funny cals but ok
-      let sReturn = String.format("Feels like %.2f", dWindChill); // Limit number to 2 decimal places fro display
+     // ${firstName} ${lastName}
+      sReturn = dWindChill.toFixed(1) ;
+      // sReturn = String.format("Feels like %.2f", dWindChill); // Limit number to 2 decimal places fro display
     } catch (eX) {
       logger.error("sWindChill Error --" + eX.message);
     }
@@ -283,8 +284,49 @@ const stationUtils = {
       logger.error("sConditionsFromCode Error " + eX.getMessage());
     }
     return sReturn;
+  },
+  /*
+    * Return min value form an array of objects
+    *
+    */
+  getMinValue(oReadings,sKey) {
+   let sReturn = "---";
+    try {
+      let reading = oReadings[0];//get the first value
+      let dMinValue = reading[sKey];//assume the first value is the lowest
+      for (let iX = 1; iX < oReadings.length; iX++) {
+        reading = oReadings[iX];
+        if (reading[sKey] < dMinValue) {
+          dMinValue = reading[sKey];
+        }
+      }
+      sReturn = dMinValue;
+    } catch (eX) {
+      Logger.error("minWindSpeed Error " + eX.getMessage());
+    }
+    return sReturn;
+  },
+  /*
+  * Return min value form an array of objects
+  *
+  */
+  getMaxValue(oReadings,sKey) {
+    let sReturn = "---";
+    try {
+      let reading = oReadings[0];//get the first value
+      let dMaxValue = reading[sKey];//assume the first value is the highest
+      for (let iX = 1; iX < oReadings.length; iX++) {
+        reading = oReadings[iX];
+        if (reading[sKey] > dMaxValue) {
+          dMaxValue = reading[sKey];
+        }
+      }
+      sReturn = dMaxValue;
+    } catch (eX) {
+      Logger.error("minWindSpeed Error " + eX.getMessage());
+    }
+    return sReturn;
   }
-
 
 };
 module.exports = stationUtils;
