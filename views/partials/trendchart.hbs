@@ -27,11 +27,12 @@
       ],
       datasets: [
         {
-          name: "Pressure",
+          name: "Pressure-1000",
           type: "line",
           values: [
             {{#each  station.readings}}
-              {{pressure}},
+              ({{pressure}} - 1000 ), // -1000 is a scaling workaround for the fact that Frappe charts normalizes the Y Axis.
+                                      // scaling pressures to 1000 kPa intervals and hiding the trends
             {{/each}}
           ]
         }
@@ -89,7 +90,7 @@
         case "Pressure":
           trendChart.title = "Pressure Trend ";
           trendChart.update(dataPressure);
-          lblUnits.textContent = "Unit: kPa";
+          lblUnits.textContent = "Unit: +1000 kPa";
 
           break;
 
